@@ -28,24 +28,18 @@ function compareButtonLabel() {
 </script>
 
 <template>
-  <UCard
-    :variant="compared ? 'soft' : 'subtle'"
+  <UCard :variant="compared ? 'soft' : 'subtle'"
     class="h-full border border-default/70 bg-elevated/80 shadow-[0_24px_60px_-32px_rgba(2,6,23,0.95)] backdrop-blur"
     :ui="{
       root: compared ? 'ring ring-primary/50' : '',
       header: 'space-y-4',
       body: 'space-y-5',
       footer: 'pt-0'
-    }"
-  >
+    }">
     <template #header>
       <div class="flex items-start justify-between gap-4">
         <div class="flex items-center gap-3">
-          <UAvatar
-            :alt="player.proName"
-            size="xl"
-            class="ring ring-primary/25"
-          />
+          <UAvatar :alt="player.proName" size="xl" class="ring ring-primary/25" />
 
           <div class="min-w-0">
             <p class="truncate text-lg font-semibold text-highlighted">
@@ -57,38 +51,34 @@ function compareButtonLabel() {
           </div>
         </div>
 
-        <UBadge
-          color="primary"
-          variant="soft"
-          size="lg"
-        >
+        <UBadge color="primary" variant="soft" size="lg">
           OVR {{ player.overallRating }}
         </UBadge>
       </div>
 
       <div class="flex flex-wrap items-center gap-2">
-        <UBadge
-          color="neutral"
-          variant="outline"
-        >
+        <UBadge color="neutral" variant="outline">
           {{ player.positionLabel }}
         </UBadge>
-        <UBadge
-          color="neutral"
-          variant="subtle"
-        >
+        <UBadge color="neutral" variant="subtle">
           {{ player.nationalityLabel }}
         </UBadge>
-        <UBadge
-          color="neutral"
-          variant="subtle"
-        >
+        <UBadge color="neutral" variant="subtle">
           {{ player.heightCm }} cm
         </UBadge>
       </div>
     </template>
 
-    <div class="grid gap-3 sm:grid-cols-3">
+    <div class="grid grid-cols-4 gap-3 lg:grid-cols-4">
+      <div class="rounded-2xl border border-default/60 bg-default/40 p-3">
+        <p class="text-[11px] uppercase tracking-[0.2em] text-muted">
+          Played
+        </p>
+        <p class="mt-2 text-2xl font-semibold text-highlighted">
+          {{ player.gamesPlayed }}
+        </p>
+      </div>
+
       <div class="rounded-2xl border border-default/60 bg-default/40 p-3">
         <p class="text-[11px] uppercase tracking-[0.2em] text-muted">
           Goals
@@ -109,7 +99,7 @@ function compareButtonLabel() {
 
       <div class="rounded-2xl border border-default/60 bg-default/40 p-3">
         <p class="text-[11px] uppercase tracking-[0.2em] text-muted">
-          Avg rating
+          Rating
         </p>
         <p class="mt-2 text-2xl font-semibold text-highlighted">
           {{ player.averageRating.toFixed(1) }}
@@ -117,10 +107,7 @@ function compareButtonLabel() {
       </div>
     </div>
 
-    <USeparator
-      label="Precision"
-      color="primary"
-    />
+    <USeparator label="Precision" color="primary" />
 
     <div class="grid grid-cols-2 gap-3 text-sm text-toned sm:grid-cols-3">
       <div>
@@ -178,30 +165,17 @@ function compareButtonLabel() {
       </div>
     </div>
 
-    <USeparator
-      label="Trend"
-      color="primary"
-    />
+    <USeparator label="Trend" color="primary" />
 
     <PlayerTrendSparkline :trend="player.goalTrend" />
 
     <template #footer>
       <div class="flex items-center gap-3">
-        <UButton
-          block
-          color="primary"
-          :variant="compared ? 'solid' : 'outline'"
-          :disabled="compareDisabled && !compared"
-          :label="compareButtonLabel()"
-          :icon="compared ? 'i-lucide-check' : 'i-lucide-scale'"
-          @click="emit('toggleCompare', player.id)"
-        />
+        <UButton block color="primary" :variant="compared ? 'solid' : 'outline'"
+          :disabled="compareDisabled && !compared" :label="compareButtonLabel()"
+          :icon="compared ? 'i-lucide-check' : 'i-lucide-scale'" @click="emit('toggleCompare', player.id)" />
 
-        <UBadge
-          v-if="compared"
-          color="primary"
-          variant="soft"
-        >
+        <UBadge v-if="compared" color="primary" variant="soft">
           Ready
         </UBadge>
       </div>
