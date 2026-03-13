@@ -4,7 +4,13 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/ui'
   ],
-
+  ssr: true, 
+  nitro: {
+    preset: 'github-pages'
+  },
+  app: {
+    baseURL: '/club-stats/' 
+  },
   devtools: {
     enabled: true
   },
