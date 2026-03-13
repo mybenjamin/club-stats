@@ -1,77 +1,87 @@
 <script setup>
 useHead({
   meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'theme-color', content: '#020617' }
   ],
   link: [
     { rel: 'icon', href: '/favicon.ico' }
   ],
   htmlAttrs: {
-    lang: 'en'
+    lang: 'en',
+    class: 'dark'
   }
 })
 
-const title = 'Nuxt Starter Template'
-const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
+const title = 'Club Stats Dashboard'
+const description = 'Dark-first player dashboard built with Nuxt UI and static club stats data.'
 
 useSeoMeta({
-  title,
+  titleTemplate: `%s · ${title}`,
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
-  twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
   twitterCard: 'summary_large_image'
 })
 </script>
 
 <template>
   <UApp>
-    <UHeader>
+    <UHeader class="border-b border-default/70 bg-black/10 backdrop-blur">
       <template #left>
-        <NuxtLink to="/">
-          <AppLogo class="w-auto h-6 shrink-0" />
-        </NuxtLink>
+        <NuxtLink
+          to="/"
+          class="flex items-center gap-3"
+        >
+          <div class="flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary">
+            <UIcon
+              name="i-lucide-chart-column-big"
+              class="h-5 w-5"
+            />
+          </div>
 
-        <TemplateMenu />
+          <div>
+            <p class="text-sm font-semibold text-highlighted">
+              Club Stats
+            </p>
+            <p class="text-xs uppercase tracking-[0.24em] text-muted">
+              Player dashboard
+            </p>
+          </div>
+        </NuxtLink>
       </template>
 
       <template #right>
-        <UColorModeButton />
-
-        <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
+        <UBadge
+          color="primary"
+          variant="soft"
+          class="rounded-full px-3 py-1"
+        >
+          Dark mode locked
+        </UBadge>
       </template>
     </UHeader>
 
-    <UMain>
+    <UMain class="pb-8">
       <NuxtPage />
     </UMain>
 
     <USeparator icon="i-simple-icons-nuxtdotjs" />
 
-    <UFooter>
+    <UFooter class="border-t border-default/70 bg-black/10">
       <template #left>
         <p class="text-sm text-muted">
-          Built with Nuxt UI • © {{ new Date().getFullYear() }}
+          Static club snapshot • Built with Nuxt UI • © {{ new Date().getFullYear() }}
         </p>
       </template>
 
       <template #right>
-        <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
+        <UBadge
           color="neutral"
-          variant="ghost"
-        />
+          variant="outline"
+        >
+          Prerender-ready data
+        </UBadge>
       </template>
     </UFooter>
   </UApp>
